@@ -23,8 +23,8 @@
      copy:
        src: ip_extract.sh
        dest: ip_extract.sh
-       owner: nginx
-       group: nginx
+       owner: foo
+       group: foo
        mode: 0755
    - name: Mail Install
      apt:
