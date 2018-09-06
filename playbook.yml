@@ -23,8 +23,8 @@
      copy:
        src: ip_extract.sh
        dest: ip_extract.sh
-       owner: foo
-       group: foo
+       owner: ansible
+       group: ansible
        mode: 0755
    - name: Mail Install
      apt:
