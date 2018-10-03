@@ -10,9 +10,14 @@
        user: nginx
        state: present
        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-   - name: Nginx Install
+   - name: Install Nginx
      apt:
        pkg: nginx
+       state: present
+       update_cache: true
+   - name: Install Mailutils
+     apt:
+       pkg: mailutils
        state: present
        update_cache: true
    - name: index.html copy
@@ -26,14 +31,9 @@
        owner: nginx
        group: nginx
        mode: 0755
-   - name: Mail Install
-     apt:
-       pkg: mailutils
-       state: present
-       update_cache: true
    - name: Cron for stats
      cron:
-       name: Email Nginx Stats
+       name: Email Access Stats
        user: nginx
        minute: 0
        hour: "*/2"
