@@ -22,9 +22,9 @@
    - name: ip_extract.sh copy
      copy:
        src: ip_extract.sh
-       dest: ip_extract.sh
-       owner: ansible
-       group: ansible
+       dest: '/tmp/ip_extract.sh'
+       owner: nginx
+       group: nginx
        mode: 0755
    - name: Mail Install
      apt:
@@ -33,9 +33,10 @@
        update_cache: true
    - name: Cron for stats
      cron:
-       name: Email Stats
+       name: Email Nginx Stats
+       user: nginx
        minute: 0
        hour: "*/2"
-       job: ~/ip_extract.sh |mail -s nginx_stats example@gmail.com
+       job: grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' /var/log/nginx/access.log |sort |uniq -c |sort -rn |mail -s nginx_stats <mail_recipient>
 
 ...
