@@ -26,13 +26,6 @@
      template:
        src: index.html.j2
        dest: /var/www/html/index.html
-   - name: ip_extract.sh copy
-     copy:
-       src: ip_extract.sh
-       dest: '/tmp/ip_extract.sh'
-       owner: nginx
-       group: nginx
-       mode: 0755
    - name: Cron for stats
      cron:
        name: Email Access Stats
